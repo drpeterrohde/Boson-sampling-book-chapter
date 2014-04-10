@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section*.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section*.2}{Motivation for linear optics quantum computing}{}% 2
+\BOOKMARK [1][-]{section*.3}{Introduction to linear opticas quantum computing}{}% 3
+\BOOKMARK [1][-]{section*.4}{Why is linear optics quantum computing hard?}{}% 4
+\BOOKMARK [1][-]{section*.5}{Introduction to boson-sampling}{}% 5
+\BOOKMARK [2][-]{section*.6}{The model}{section*.5}% 6
+\BOOKMARK [2][-]{section*.7}{Sampling problems vs. decision problems}{section*.5}% 7
+\BOOKMARK [2][-]{section*.8}{Why is boson-sampling so much easier than linear optics quantum computing?}{section*.5}% 8
+\BOOKMARK [1][-]{section*.9}{Why is boson-sampling computationally hard?}{}% 9
+\BOOKMARK [2][-]{section*.10}{The connection with matrix permanents}{section*.9}% 10
+\BOOKMARK [2][-]{section*.11}{The complexity of matrix permanents}{section*.9}% 11
+\BOOKMARK [2][-]{section*.12}{Errors in boson-sampling}{section*.9}% 12
+\BOOKMARK [1][-]{section*.13}{Boson-sampling and the Extended Church-Turing thesis}{}% 13
+\BOOKMARK [1][-]{section*.14}{Boson-sampling with other classes of quantum optical states}{}% 14
+\BOOKMARK [1][-]{section*.15}{How to build a boson-sampling device}{}% 15
+\BOOKMARK [2][-]{section*.16}{Photon sources}{section*.15}% 16
+\BOOKMARK [2][-]{section*.17}{Linear optics networks}{section*.15}% 17
+\BOOKMARK [2][-]{section*.18}{Photo-detection}{section*.15}% 18
+\BOOKMARK [1][-]{section*.19}{Conclusion}{}% 19
+\BOOKMARK [1][-]{section*.20}{Acknowledgments}{}% 20
