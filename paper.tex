@@ -84,18 +84,28 @@ Why experimental boson-sampling will not elucidate the ECT thesis
 
 \section{How to build a boson-sampling device (Keith)}
 
-In this section we explain what components are required to build a boson-sampling device. There are three basic components to building this device which are single-photon sources, linear optical networks, and photon detectors. In the lab these components have multiple options 
-
-have their own issues to overcome, which are described below. 
-There are various ways to piece together these components to make a boson-sampling device and in this section we describe many of the various possibilities. 
-Although easier than LOQC it is still extremely challenging to build.
-
+In this section we explain what components are required to build a linear optical boson-sampling device. There are three basic components to building this device which are single-photon sources, linear optical networks, and photon detectors. These components each have their own issues to overcome, which are described below. Also, there are multiple options for each of these and thus multiple ways of piecing a boson-sampling device together. We we describe many of these various possibilities in this section. Although boson-sampling is much easier to implement than full scale LOQC it remains extremely challenging to build a post-classical boson-sampling machine. 
 
 \subsection{Photon sources}
+
+Boson-sampling begins with by preparing the input state $\ket{\Psi_{\mathrm{in}}}=\ket{1,1,\dots,1,0,0,\dots,0}$. Using linear optics the input state is composed of $n$ single photons which can be generated using various types of available photon sources. The most promising candidate is spontaneous parametric down conversion (SPDC). 
+
+The SPDC source works by pumping a non-linear crystal $(\chi^2)$ with a laser source. With some probability one of the laser photons interacts with the crystal and gets split into an entangled superposition of idler and signal photons. The signal photon is measured by a photo-detector. With a successful click we know that the idler photon exists, which then gets routed into one of the ports in the boson-sampling device. The output state of the SPDC source is,
+\begin{equation} \label{SPDC}
+\ket{\Psi_{SPDC}} = \sqrt{1-\chi^2}\sum_{n=0}^{\infty}\chi^n\ket{n}_s\ket{n}_i,
+\end{equation}
+where $\chi$ is the squeezing parameter, $n$ is the number of photons, $s$ represents the signal term, and $i$ represents the idler term.
+
+There are several problems associated with SPDC sources. While SPDC sources are currently the most widely used sources in linear optical experiments they have problems which limit scaling boson-sampling to the post classical regime. The major problem is higher order photon terms. In the boson-sampling model we only want the $\ket{\Psi_{\mathrm{SPDC}}}\propto\chi\ket{1}_s\ket{1}_i$ term and getting a single photon is far from deterministic. In reality there is a large probability of getting the zero photon term and higher order terms with decreasing probability. Since there are $n$ required single photons this error term scales exponentially. 
+
+Another problem is that SPDC sources is that there is uncertainty in the temporally distribution of the photons. If you build a boson-sampling device using multiple SPDC sources it is extremely difficult to temporally align each of the $n$ photons going into the device. This error term scales exponentially with the number of photons. Exponentially scaling errors totally renders your boson-sampling device useless since we can only tolerate polynomial error scaling with $n$. 
+
+One way to get around some of these errors is to consider a multiplexing device \cite{}.
 
 \begin{itemize}
 \item Spontaneous Parametric Down Conversion (SPDC); List problems; insert equation; 
 \item Quantum Dot
+\item cite and describe our paper on SPDC scaling.
 \end{itemize}
 
 \subsection{Linear optics networks}
