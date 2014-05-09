@@ -84,28 +84,35 @@ Why experimental boson-sampling will not elucidate the ECT thesis
 
 \section{How to build a boson-sampling device (Keith)}
 
-In this section we explain what components are required to build a linear optical boson-sampling device. There are three basic components to building this device which are single-photon sources, linear optical networks, and photon detectors. These components each have their own issues to overcome, which are described below. Also, there are multiple options for each of these and thus multiple ways of piecing a boson-sampling device together. We we describe many of these various possibilities in this section. Although boson-sampling is much easier to implement than full scale LOQC it remains extremely challenging to build a post-classical boson-sampling machine. 
+In this section we explain the basic components required to build a linear optical boson-sampling device. This device consists of three basic components which are single-photon sources, linear optical networks, and photon detectors each having their own issues to overcome, which are described below. Also, there are multiple options for each component and thus multiple ways of piecing a boson-sampling device together. Although boson-sampling is much easier to implement than full scale LOQC it remains  challenging to build a post-classical boson-sampling machine. 
 
 \subsection{Photon sources (Keith)}
 
-Boson-sampling begins with by preparing the input state $\ket{\Psi_{\mathrm{in}}}=\ket{1,1,\dots,1,0,0,\dots,0}$. Using linear optics the input state is composed of $n$ single photons which can be generated using various types of available photon sources. The most promising candidate is spontaneous parametric down conversion (SPDC). 
+Optical boson-sampling begins with by preparing $n$ single photon Fock states to create the input state $\ket{\Psi_{\mathrm{in}}}=\ket{1,1,\dots,1,0,0,\dots,0}$. This state can be generated using various types of available photon sources. The most promising candidate is spontaneous parametric down conversion (SPDC) \cite{}. Today SPDC sources are the most common source of single photons in the lab.
 
-The SPDC source works by pumping a non-linear crystal $(\chi^2)$ with a laser source. With some probability one of the laser photons interacts with the crystal and gets split into an entangled superposition of idler and signal photons. The signal photon is measured by a photo-detector. With a successful click we know that the idler photon exists, which then gets routed into one of the ports in the boson-sampling device. The output state of the SPDC source is,
+The SPDC source works by first pumping a non-linear crystal with a laser source. With some probability one of the laser photons interacts with the crystal and emits an entangled superposition of photons along two paths. The photons in one of the paths are called the signal photons and the photons in the other path are called the idler photons. The signal photons are measured by a photo-detector and with a successful click we know that the idler photons exist. The idler photons then gets routed into one of the input ports of the boson-sampling device. The output state of the SPDC source is,
 \begin{equation} \label{SPDC}
 \ket{\Psi_{SPDC}} = \sqrt{1-\chi^2}\sum_{n=0}^{\infty}\chi^n\ket{n}_s\ket{n}_i,
 \end{equation}
-where $\chi$ is the squeezing parameter, $n$ is the number of photons, $s$ represents the signal term, and $i$ represents the idler term.
+where $\chi$ is the squeezing parameter, $n$ is the number of photons, $s$ represents the signal photons, and $i$ represents the idler photons. For boson-sampling we would ideally like the SPDC source to output only the $\ket{1}_s\ket{1}_i$ term. We will let the probability of successfully emitting a single photon with an SPDC source be $\eta$.
 
-There are several problems associated with SPDC sources. While SPDC sources are currently the most widely used sources in linear optical experiments they have problems which limit scaling boson-sampling to the post classical regime. The major problem is higher order photon terms. In the boson-sampling model we only want the $\ket{\Psi_{\mathrm{SPDC}}}\propto\chi\ket{1}_s\ket{1}_i$ term and getting a single photon is far from deterministic. In reality there is a large probability of getting the zero photon term and higher order terms with decreasing probability. Since there are $n$ required single photons this error term scales exponentially. 
+There are several problems associated with SPDC sources which limit the scalability of boson-sampling. The major problem is higher order photon terms. In the boson-sampling model we only want the $\ket{1}_s\ket{1}_i$ term which is far from deterministic using SPDC sources. For instance, the SPDC source is going to emit the zero photon term with highest probability. Also, photon terms of larger than one will emit with exponentially decreasing probability.  Since boson-sampling requires $n$ photons at the input and the error is associated with each SPDC source is $1-\eta$, then the total error due to unprobabilistic photon emissions scales as $(1-\eta)^{n}$, which is exponential with $n$. 
 
-Another problem is that SPDC sources is that there is uncertainty in the temporally distribution of the photons. If you build a boson-sampling device using multiple SPDC sources it is extremely difficult to temporally align each of the $n$ photons going into the device. This error term scales exponentially with the number of photons. Exponentially scaling errors totally renders your boson-sampling device useless since we can only tolerate polynomial error scaling with $n$. 
+One way to get around this error is to consider a multiplexing device \cite{bib:migdall2002tailoring}. There has been recent experimental progress in developing active multiplexing devices \cite{bib:LPOR201400027, bib:ma2011experimental}. It was recently shown my motes \emph{et al.} that SPDC sources are scalable in the asymptotic limit for boson-sampling\cite{bib:motes2013spontaneous}. The boson-sampling architecture with multiplexing is shown in Fig.\ref{fig:multiplexing}. 
 
-One way to get around some of these errors is to consider a multiplexing device \cite{}.
+\begin{figure}[!htb]
+\includegraphics[width=0.7\columnwidth]{multiplexing}
+\caption{Boson-sampling architecture using SPDC sources with an active multiplexer. $N$ sources operate in parallel, each heralded by an inefficient single-photon number-resolving detector. It is assumed that \mbox{$N\gg n$}, which guarantees that at least $n$ photons will be heralded. The multiplexer dynamically routes the successfully heralded modes to the first $n$ modes of the unitary network $U$. Finally, photodetection is performed and the output is post-selected on the detection on all $n$ photons.}
+\label{fig:multiplexing}
+\end{figure}
+
+Another problem is that SPDC sources is that there is uncertainty in the temporal distribution of the photons. If you build a boson-sampling device using multiple SPDC sources it is extremely difficult to temporally align each of the $n$ photons going into the device. This error term also scales exponentially with $n$. Exponentially scaling errors totally renders your boson-sampling device useless since we can only tolerate polynomial error scaling with $n$. 
 
 \begin{itemize}
 \item Spontaneous Parametric Down Conversion (SPDC); List problems; insert equation; 
 \item Quantum Dot
 \item cite and describe our paper on SPDC scaling.
+\item be sure to describe issues to overcome
 \end{itemize}
 
 \subsection{Linear optical networks (Keith)}
@@ -116,6 +123,7 @@ One way to get around some of these errors is to consider a multiplexing device 
 \item Discrete elements; beam-splitters and phase shifters; give general equation of beam-splitter from Knight book.
 \item in case of other types of bosons it need to be optical.
 \item alignment.
+\item be sure to describe issues to overcome
 \end{itemize}
 
 \subsection{Photo-detection (Keith)}
@@ -123,6 +131,7 @@ One way to get around some of these errors is to consider a multiplexing device 
 \begin{itemize}
 \item List different types of detectors
 \item don't need to be number resolving.
+\item be sure to describe issues to overcome
 \end{itemize}
 
 \section{Conclusion (Jon)}
@@ -139,6 +148,6 @@ This research was conducted by the Australian Research Council Centre of Excelle
 % Bibliography
 %
 
-\bibliography{paper}
+\bibliography{bibliography}
 
 \end{document}
