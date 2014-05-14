@@ -84,21 +84,23 @@ Why experimental boson-sampling will not elucidate the ECT thesis
 
 \section{How to build a boson-sampling device (Keith)}
 
-In this section we explain the basic components required to build a linear optical boson-sampling device. This device consists of three basic components which are single-photon sources, linear optical networks, and photon detectors each having their own issues to overcome, which are described below. Also, there are multiple options for each component and thus multiple ways of piecing a boson-sampling device together. Although boson-sampling is much easier to implement than full scale LOQC it remains  challenging to build a post-classical boson-sampling machine. 
+In this section we explain the basic components required to build a linear optical boson-sampling device. This device consists of three basic components which are single-photon sources, linear optical networks, and photon detectors each having their own issues to overcome, which are described below. Also, there are multiple options for each component and thus multiple ways of building a boson-sampling device. Although boson-sampling is much easier to implement than full scale LOQC it remains  challenging to build a post-classical boson-sampling machine. 
 
 \subsection{Photon sources (Keith)}
 
-Optical boson-sampling begins with by preparing $n$ single photon Fock states to create the input state $\ket{\Psi_{\mathrm{in}}}=\ket{1,1,\dots,1,0,0,\dots,0}$. This state can be generated using various types of available photon sources. The most promising candidate is spontaneous parametric down conversion (SPDC) \cite{}. Today SPDC sources are the most common source of single photons in the lab.
+\textbf{add in citations}
 
-The SPDC source works by first pumping a non-linear crystal with a laser source. With some probability one of the laser photons interacts with the crystal and emits an entangled superposition of photons along two paths. The photons in one of the paths are called the signal photons and the photons in the other path are called the idler photons. The signal photons are measured by a photo-detector and with a successful click we know that the idler photons exist. The idler photons then gets routed into one of the input ports of the boson-sampling device. The output state of the SPDC source is,
+Optical boson-sampling begins by preparing $n$ single photon Fock states to create the input state $\ket{\Psi_{\mathrm{in}}}=\ket{1,1,\dots,1,0,0,\dots,0}$. This state can be generated using various types of available photon sources. For a review of many of the photon-sources see \cite{bib:SourceAndDetectorReview}. The most common is spontaneous parametric down conversion (SPDC), which are used in most linear optical experiments involving single-photons. 
+
+The SPDC source works by first pumping a non-linear crystal with a laser source. With some probability one of the laser photons interacts with the crystal and emits an entangled superposition of photons along two paths. The photons in one path are called the signal photons and the photons in the other path are called the idler photons. The signal photons are measured by a photo-detector and with a successful click we know that the idler photons exist. The idler photons are then routed into one of the input ports of the boson-sampling device. The output state of the SPDC source is,
 \begin{equation} \label{SPDC}
 \ket{\Psi_{SPDC}} = \sqrt{1-\chi^2}\sum_{n=0}^{\infty}\chi^n\ket{n}_s\ket{n}_i,
 \end{equation}
-where $\chi$ is the squeezing parameter, $n$ is the number of photons, $s$ represents the signal photons, and $i$ represents the idler photons. For boson-sampling we would ideally like the SPDC source to output only the $\ket{1}_s\ket{1}_i$ term. We will let the probability of successfully emitting a single photon with an SPDC source be $\eta$.
+where $\chi$ is the squeezing parameter, $n$ is the number of photons, $s$ represents the signal photons, and $i$ represents the idler photons. For boson-sampling we would ideally like the SPDC source to output only the single-photon term $\ket{1}_s\ket{1}_i$.  
 
-There are several problems associated with SPDC sources which limit the scalability of boson-sampling. The major problem is higher order photon terms. In the boson-sampling model we only want the $\ket{1}_s\ket{1}_i$ term which is far from deterministic using SPDC sources. For instance, the SPDC source is going to emit the zero photon term with highest probability. Also, photon terms of larger than one will emit with exponentially decreasing probability.  Since boson-sampling requires $n$ photons at the input and the error is associated with each SPDC source is $1-\eta$, then the total error due to unprobabilistic photon emissions scales as $(1-\eta)^{n}$, which is exponential with $n$. 
+There are several problems associated with SPDC sources which limit the scalability of boson-sampling. The major problem is higher order photon terms. In the boson-sampling model we only want the $\ket{1}_s\ket{1}_i$ term which is far from deterministic using SPDC sources. For instance, the SPDC source is going to emit the zero photon term with highest probability. Also, photon terms of larger than one will emit with exponentially decreasing probability. Now if we let the probability of successfully emitting the single photon terms with an SPDC source be $\eta$, then we can characterise the error rates. Since boson-sampling requires $n$ photons and the error associated with each SPDC source is $1-\eta$, then the total error due to unprobabilistic photon emissions scale as $(1-\eta)^{n}$, which is exponential in $n$. It was shown by Aaronson \& Arkhipov that boson-sampling can only tolerate polynomial error scaling rate with $n$, so this totally kills the boson-sampling device.
 
-One way to get around this error is to consider a multiplexing device \cite{bib:migdall2002tailoring}. There has been recent experimental progress in developing active multiplexing devices \cite{bib:LPOR201400027, bib:ma2011experimental}. It was recently shown my Motes \emph{et al.} that SPDC sources are scalable in the asymptotic limit for boson-sampling \cite{bib:motes2013spontaneous}. The boson-sampling architecture with multiplexing is shown in Fig.\ref{fig:multiplexing}. 
+One way to get around this error with SPDC sources is to consider a multiplexing device \cite{bib:migdall2002tailoring}. There has been recent experimental progress in developing active multiplexing devices \cite{bib:LPOR201400027, bib:ma2011experimental}. It was recently shown my Motes \emph{et al.} that SPDC sources are scalable in the asymptotic limit for boson-sampling \cite{bib:motes2013spontaneous}. The boson-sampling architecture with multiplexing is shown and described in Fig.\ref{fig:multiplexing}. 
 
 \begin{figure}[!htb]
 \includegraphics[width=0.7\columnwidth]{multiplexing}
@@ -106,38 +108,43 @@ One way to get around this error is to consider a multiplexing device \cite{bib:
 \label{fig:multiplexing}
 \end{figure}
 
-Another problem is that SPDC sources is that there is uncertainty in the temporal distribution of the photons. If you build a boson-sampling device using multiple SPDC sources it is extremely difficult to temporally align each of the $n$ photons going into the device. The error term associated with this also scales exponentially with $n$. Exponentially scaling errors totally renders your boson-sampling device useless since we can only tolerate polynomial error scaling with $n$. 
+Another problem is that photons from SPDC sources have uncertainty in their temporal distribution. If a boson-sampling device is built using multiple SPDC sources it is difficult to temporally align each of the $n$ photons going into the device. The error term associated with this also scales exponentially with $n$, which as described previously totally renders your boson-sampling device useless. 
 
 \subsection{Linear optical networks (Keith)}
-After the input state has been prepared it then passes through some linear optical network denoted by $U$. $U$ transforms the input state and may be completely characterized before the experiment using coherent state inputs \cite{bib:PhysRevLett.73.58}. This network is composed of an array of discrete elements, namely, beam-splitters and phase shifters.  A beamsplitter and phase shifter can be combined and represented in the following general form \cite{bib:GerryKnight05},
+After the input state has been prepared it then passes through some linear optical network denoted by $U$. $U$ transforms the input state as per Eq. \ref{eq:} and may be completely characterized before the experiment using coherent state inputs \cite{bib:PhysRevLett.73.58}. $U$ is composed of an array of discrete elements, namely, beam-splitters and phase shifters.  A beamsplitter and phase shifter can be combined and represented in the following general form \cite{bib:GerryKnight05},
 \begin{equation} \label{eq:BS}
-U_{\mathrm{BS}}(t) = \left[ \begin{array}{cc}
+U_{\mathrm{BS}}(t) = \left( \begin{array}{cc}
 e^{i(\alpha-\frac{\beta}{2}-\frac{\gamma}{2})}\mathrm{cos}\left(\frac{\delta}{2}\right) & -e^{i(\alpha-\frac{\beta}{2}+\frac{\gamma}{2})}\mathrm{sin}\left(\frac{\delta}{2}\right)  \\
 e^{i(\alpha+\frac{\beta}{2}-\frac{\gamma}{2})}\mathrm{sin}\left(\frac{\delta}{2}\right) & e^{i(\alpha+\frac{\beta}{2}+\frac{\gamma}{2})}\mathrm{cos}\left(\frac{\delta}{2}\right)
-\end{array} \right], 
+\end{array} \right), 
 \end{equation}
-where $0\leq\alpha\leq2\pi$ and $0\leq\{\beta,\gamma,\delta\}\leq\pi$ are arbitrary phases. It was shown by Reck \emph{et al.} that an arbitrary unitary transformation $U$ can be constructed with  $O(m^2)$ optical elements \cite{bib:PhysRevLett.73.58}, where $m$ is the number of inputs to the boson-sampling device. It would seem as though hundreds of optical elements would need to be aligned which would also occupy entire optical laboratories. This is quite impracticable and is a problem with boson-sampling. There are other options to get around some of these troubles.  
+where $0\leq\alpha\leq2\pi$ and $0\leq\{\beta,\gamma,\delta\}\leq\pi$ are arbitrary phases. It was shown by Reck \emph{et al.} that an arbitrary unitary transformation $U$ can be constructed with  $O(m^2)$ optical elements \cite{bib:PhysRevLett.73.58}, where $m$ is the number of inputs to the boson-sampling device. 
 
-One method to simplify the linear optical network is to use integrated waveguides. Quantum interference was first demonstrated in this technology by Peruzzo \emph{et al.}\cite{bib:peruzzo2011multimode}. This technology integrates the beam-splitters and phase shifters into a 
+For a $U$ that would implement a classically hard problem one would need hundreds of optical elements. Constructing an arbitrary $U$ using the traditional linear optical approach of setting and aligning each optical element would be quite tedious if not impossible. This approach would also occupy the space and resources of entire optical labs, which is unfeasible. Thus, the traditional approach is quite impracticable and is a major problem with boson-sampling; however, there are potential routes to avoid some of these issues.  
 
-A major experimental problem with creating a unitary $U$ is aligning $O(m^2)$ optical elements. A potential route around this is to use time-bin encoding in a loop based architecture \cite{bib:motes2014scalable}. The major advantage of this architecture is that it only requires two delay loops, two on/ off switches, and one controllable phase shifter as shown in Fig. \ref{fig:fiber_loop}, thus the aligning problem is eliminated. A major problem with this architecture however is that it remains difficult to dynamically control a phase-shifter with high fidelity. 
+One method to simplify the linear optical network is to use integrated waveguides. Quantum interference was first demonstrated with this technology by Peruzzo \emph{et al.} \cite{bib:peruzzo2011multimode}. Also, this technology promises superior performance, scalability, and miniaturization by integrating the linear optical network onto a chip \cite{bib:Politi02052008, bib:matthews2009, bib:Politi04092009}. Aligning would no longer be a major problem as the waveguide would be laser written using computers. The waveguide can have hundreds of modes on a relatively small silicon chip \cite{}, so space is no longer a major issue. The main issue with integrated waveguides is achieving sufficiently low loss rates inside of the waveguide and in the coupling of the waveguide to the photon-sources and photo-detectors. The current lose rates in these waveguides are too high and post-selection upon $n$ photons at the output would almost never happen. It is possible that the photon-sources and photo-detectors however will eventually be built into the waveguide which would greatly reduce the loss.   
+
+Another potential route to simplifying the linear optical network is to use time-bin encoding in a loop based architecture \cite{bib:motes2014scalable}. The major advantage of this architecture is that it only requires two delay loops, two on/ off switches, and one controllable phase shifter as shown and described in Fig. \ref{fig:fiber_loop}. This possibility eliminates the problem of aligning hundreds of optical elements and it eliminates the size problem because it can be set up on a small optics table. A major problem with this architecture however is that it remains difficult to control a dynamic phase-shifter with high fidelity at a rate that is on the order of the time-bin width $\tau$.
 
 \begin{figure}[!htb]
 \includegraphics[width=0.7\columnwidth]{fiber_loop}
-\caption{The full time-bin encoding architecture for implementing a boson-sampling device. Single photons arrive in time-bins instead of in spatial modes. Each time-bin corresponds to spatial modes in the boson-sampling scheme and are separated by time $\tau$. The photon train gets coupled completely in by the first switch. The photons then transverse the inner loop such that each time-bin may interact. The first (last) photon is coupled completely in (out) so that input and output time-bins match. The outer loop allows an arbitrary number of the smaller loops to be applied consecutively which is determined by the third switch. Finally, the photon train is measured at the output and regular boson-sampling statistics apply. Note that any delay line will work in this architecture.}
+\caption{The full time-bin encoding architecture for implementing a boson-sampling device. Single photons arrive in a train of time-bins instead of in spatial modes. Each time-bin corresponds to spatial modes in the boson-sampling scheme and are separated by time $\tau$. The photon train gets coupled completely in by the first switch. The photons then transverse the inner loop such that each time-bin may interact. The first (last) photon is coupled completely in (out) so that input and output time-bins match. The outer loop allows an arbitrary number of the smaller loops to be applied consecutively which is determined by the third switch. Finally, the photon train is measured at the output and regular boson-sampling statistics apply. Note that any delay line will work in this architecture.}
 \label{fig:fiber_loop}
 \end{figure}
 
-\begin{itemize}
-\item Reck et al.
-\item Waveguides; cite Alberto Peruzzo
-\item Discrete elements; beam-splitters and phase shifters; give general equation of beam-splitter from Knight book.
-\item in case of other types of bosons it need to be optical.
-\item alignment.
-\item be sure to describe issues to overcome
-\end{itemize}
-
 \subsection{Photo-detection (Keith)}
+The final task of the boson-sampling device is sampling the output distribution. With linear optical boson-sampling this is done with photo-detectors. For a review on many of the various photo-detectors see \cite{bib:SourceAndDetectorReview}.  
+
+There are two general types of photo-detectors -- photon-number resolving detectors and bucket detectors. The former counts the number of photons that are absorbed by the detector. These are much more difficult to make and more expensive in general than bucket detectors. Bucket detectors simply fire if there are photons present or don't fire if there are no photons present. It does not inform the user of the number of photons that entered the detector. Detection of a single photon is notoriously difficult with all sorts of possible errors occurring. Some of these errors include the detector measuring extraneous photons which is called dark counting, it could count two photons when there was one and vice versa, and it could trigger when there were no photons present, among others.
+
+In boson-sampling the number of input and output modes scale as $O(n^2)$. In other words there is an order of magnitude more modes than photons. This is to avoid the bosonic birthday paradox where photons would tend to bunch in the same output mode. When large amounts of bunching occurs the output statistics are classically easy to simulate. This $O(n^2)$ mode scaling is also advantageous for the photo-detection segment of boson-sampling because on average only one photon will arrive in any given output port. Thus, bucket detectors are sufficient for boson-sampling given that the output sample is post-selected upon detecting all $n$ photons. However, if photon-number resolving detectors were used then the samples where multiple photons arrive in the same output mode could be kept. This would be advantageous for sampling distributions that were on the edge of being classically easy and classically difficult to simulate because of more bunching (explain this sentence better). 
+
+Some of the various types of photo-detectors are:
+
+Number-resolving:
+
+Bucket:
+
 
 \begin{itemize}
 \item List different types of detectors
