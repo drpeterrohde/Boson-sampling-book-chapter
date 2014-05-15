@@ -70,9 +70,9 @@ We begin by preparing an input state comprising $n$ single photons in $m$ modes,
 &=& \hat{a}^\dag_1 \dots \hat{a}^\dag_n \ket{0_1,\dots,0_m},
 \end{eqnarray}
 where $\hat{a}^\dag_i$ is the photon creation operator in the $i$th mode. It is assumed that the number of modes scales quadratically with the number of photons, \mbox{$m=O(n^2)$}. The input state is evolved via a passive linear optics network, which implements a unitary map on the creation operators,
-\begin{equation}
+\begin{equation} \label{eq:Utransform}
 \hat{U}\hat{a}_i^\dag\hat{U}^\dag = \sum_{j=1}^m U_{i,j} \hat{a}_j^\dag,
-\end{equation}
+\end{equation} 
 where $U$ is a unitary matrix characterising the linear optics network. It was shown by Reck \emph{et al.} \cite{bib:Reck94} that any $U$ may be efficiently decomposed into $O(m^2)$ optical elements. The output state is a superposition of the different configurations of how the $n$ photons could have arrived in the output modes,
 \begin{equation}
 \ket{\psi_\mathrm{out}} = \sum_S \gamma_S \ket{n_1^{(S)},\dots,n_m^{(S)}},
@@ -189,7 +189,7 @@ One way to get around this error with SPDC sources is to consider a multiplexing
 Another problem is that photons from SPDC sources have uncertainty in their temporal distribution. If a boson-sampling device is built using multiple SPDC sources it is difficult to temporally align each of the $n$ photons going into the device. The error term associated with this also scales exponentially with $n$, which as described previously totally renders your boson-sampling device useless. 
 
 \subsection{Linear optical networks (Keith)}
-After the input state has been prepared it then passes through some linear optical network denoted by $U$. $U$ transforms the input state as per Eq. \ref{eq:} and may be completely characterized before the experiment using coherent state inputs \cite{bib:PhysRevLett.73.58}. $U$ is composed of an array of discrete elements, namely, beam-splitters and phase shifters.  A beamsplitter and phase shifter can be combined and represented in the following general form \cite{bib:GerryKnight05},
+After the input state has been prepared it then passes through some linear optical network denoted by $U$. $U$ transforms the input state as per Eq. \ref{eq:Utransform} and may be completely characterized before the experiment using coherent state inputs \cite{bib:PhysRevLett.73.58}. $U$ is composed of an array of discrete elements, namely, beam-splitters and phase shifters.  A beamsplitter and phase shifter can be combined and represented in the following general form \cite{bib:GerryKnight05},
 \begin{equation} \label{eq:BS}
 U_{\mathrm{BS}}(t) = \left( \begin{array}{cc}
 e^{i(\alpha-\frac{\beta}{2}-\frac{\gamma}{2})}\mathrm{cos}\left(\frac{\delta}{2}\right) & -e^{i(\alpha-\frac{\beta}{2}+\frac{\gamma}{2})}\mathrm{sin}\left(\frac{\delta}{2}\right)  \\
