@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 MAY 2014 11:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  15 MAY 2014 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -418,35 +418,32 @@ Package pdftex.def Info: three_photon_combinatorics.pdf used on input line 122.
 
 (pdftex.def)             Requested size: 246.0pt x 123.81221pt.
  [2 <./two_photon_combinatorics.pdf> <./three_photon_combinatorics.pdf>] [3]
-<multiplexing.pdf, id=219, 336.59131pt x 291.088pt>
+<multiplexing.pdf, id=221, 336.59131pt x 291.088pt>
 File: multiplexing.pdf Graphic file (type pdf)
  <use multiplexing.pdf>
 Package pdftex.def Info: multiplexing.pdf used on input line 184.
 (pdftex.def)             Requested size: 172.19925pt x 148.92372pt.
 
-
-LaTeX Warning: Reference `eq:' on page 4 undefined on input line 192.
-
-<fiber_loop.pdf, id=228, 230.56679pt x 133.12686pt>
+<fiber_loop.pdf, id=232, 230.56679pt x 133.12686pt>
 File: fiber_loop.pdf Graphic file (type pdf)
  <use fiber_loop.pdf>
-Package pdftex.def Info: fiber_loop.pdf used on input line 208.
+Package pdftex.def Info: fiber_loop.pdf used on input line 209.
 (pdftex.def)             Requested size: 172.19925pt x 99.42642pt.
 
 [4 <./multiplexing.pdf>]
 
 LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 215.
+ on input line 221.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 228.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 230.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 228.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 230.
 
-Underfull \hbox (badness 1137) in paragraph at lines 240--241
+Underfull \hbox (badness 1137) in paragraph at lines 242--243
 \OT1/cmr/m/n/10 search Coun-cil Cen-tre of Ex-cel-lence for En-gi-neered
  []
 
@@ -460,43 +457,23 @@ Underfull \hbox (badness 1253) in paragraph at lines 117--125
  []\OT1/cmr/m/n/9 X.-S. Ma, S. Zot-ter, J. Kofler, T. Jen-newein, and
  []
 
-[5 <./fiber_loop.pdf>]
-Underfull \hbox (badness 5817) in paragraph at lines 161--169
- []\OT1/cmr/m/n/9 A. Politi, M. J. Cryan, J. G. Rar-ity, S. Yu,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--169
- \OT1/cmr/m/n/9 and J. L. O'Brien, Sci-ence \OT1/cmr/bx/n/9 320\OT1/cmr/m/n/9 ,
- 646 (2008),
- []
-
-
-Overfull \hbox (12.96982pt too wide) in paragraph at lines 161--169
- \OT1/cmr/m/n/9 http://www.sciencemag.org/content/320/5876/646.full.pdf. 
- []
-
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 249.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 249.
- [6] (./ITAMP-BookChapter.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 249.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 249.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 251.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 251.
+ [5 <./fiber_loop.pdf>] (./ITAMP-BookChapter.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 251.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 251.
 Package rerunfilecheck Info: File `ITAMP-BookChapter.out' has not changed.
-(rerunfilecheck)             Checksum: 99D19A7F489EBF5534B5FC2FC8F7E11A;1310.
-
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: A691AC37268960AEFFDFC678538DAF1D;1269.
  ) 
 Here is how much of TeX's memory you used:
  7544 strings out of 493633
- 107026 string characters out of 3143378
- 219831 words of memory out of 3000000
- 10691 multiletter control sequences out of 15000+200000
+ 107045 string characters out of 3143378
+ 216969 words of memory out of 3000000
+ 10692 multiletter control sequences out of 15000+200000
  13402 words of font info for 54 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 32i,13n,28p,1152b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 32i,13n,28p,1050b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -520,10 +497,10 @@ st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2011/texmf-dist
 fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2011/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2011/texmf-dist/font
 s/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on ITAMP-BookChapter.pdf (6 pages, 579363 bytes).
+Output written on ITAMP-BookChapter.pdf (5 pages, 576796 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 358 compressed objects within 4 object streams
- 61 named destinations out of 1000 (max. 500000)
+ 458 PDF objects out of 1000 (max. 8388607)
+ 356 compressed objects within 4 object streams
+ 60 named destinations out of 1000 (max. 500000)
  162 words of extra memory for PDF output out of 10000 (max. 10000000)
 

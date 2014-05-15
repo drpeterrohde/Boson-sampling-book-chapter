@@ -4,42 +4,41 @@ The top-level auxiliary file: ITAMP-BookChapter.aux
 The style file: apsrev.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for ""
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 22 entries,
             3411 wiz_defined-function locations,
-            1321 strings with 14391 characters,
-and the built_in function-call counts, 15923 in all, are:
-= -- 830
+            1320 strings with 14327 characters,
+and the built_in function-call counts, 15913 in all, are:
+= -- 829
 > -- 654
 < -- 86
 + -- 555
 - -- 160
-* -- 2205
-:= -- 1693
+* -- 2201
+:= -- 1692
 add.period$ -- 22
 call.type$ -- 22
 change.case$ -- 88
 chr.to.int$ -- 21
 cite$ -- 22
 duplicate$ -- 1450
-empty$ -- 1305
+empty$ -- 1304
 format.name$ -- 382
-if$ -- 2935
+if$ -- 2933
 int.to.chr$ -- 2
 int.to.str$ -- 23
 missing$ -- 210
 newline$ -- 81
 num.names$ -- 66
-pop$ -- 441
+pop$ -- 440
 preamble$ -- 1
 purify$ -- 88
 quote$ -- 0
-skip$ -- 576
+skip$ -- 578
 stack$ -- 0
 substring$ -- 384
-swap$ -- 1130
+swap$ -- 1129
 text.length$ -- 80
 text.prefix$ -- 0
 top$ -- 0
@@ -47,5 +46,4 @@ type$ -- 130
 warning$ -- 0
 while$ -- 55
 width$ -- 0
-write$ -- 226
-(There was 1 warning)
+write$ -- 225

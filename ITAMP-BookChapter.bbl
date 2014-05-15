@@ -164,8 +164,7 @@
   \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Yu}}, \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{J.~L.} \bibnamefont{O'Brien}},
   \bibinfo{journal}{Science} \textbf{\bibinfo{volume}{320}},
-  \bibinfo{pages}{646} (\bibinfo{year}{2008}),
-  \eprint{http://www.sciencemag.org/content/320/5876/646.full.pdf}.
+  \bibinfo{pages}{646} (\bibinfo{year}{2008}).
 
 \bibitem[{\citenamefont{Matthews et~al.}(2009)\citenamefont{Matthews, Politi,
   Stefanov, and O'Brien}}]{bib:matthews2009}
