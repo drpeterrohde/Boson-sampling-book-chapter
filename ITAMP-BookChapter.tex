@@ -11,6 +11,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{mathrsfs}
 \usepackage[colorlinks]{hyperref}
+\usepackage{braket}
 
 \begin{document}
 
@@ -55,10 +56,146 @@
 \section{Introduction (Bryan)}
 
 \subsection{Motivation for LOQC and boson-sampling (Bryan)}
+There are now many different implementations of quantum computing as well as models of computation. These implementations include atom and ion trap quantum computing, superconducting qubits, nuclear magnetic resonance, quantum dots, nuclear spin and optical quantum computing. When describing an implementation, one can use various models of computation. These include the gate model, topological, adiabatic, quantum random walks, quantum Turing machines, permutational, and the one-clean qubit models. The model familiar to most is the gate model as it is most analogous to the classical circuit model of computation. We use this gate model in order describe linear optical quantum computing and eventually a special purpose subset, boson sampling.
 
-\section{Intro to LOQC (Bryan)}
+	As stated, there exist many choices of implementations and computational models. Certain pairs of choices certainly have natural synergy but a fair question to ask is, which choice is likely to be the first implemented quantum computer? The answer is likely not just one choice, but a composite of different choices for the various required components of a quantum computer. For this discussion we focus on linear optical quantum computing for its main allure of ``simple'' implementation.
 
-\section{Why is LOQC hard? (Bryan)}
+	There is a many year history in the physics community of investigations into the use of linear interferometers, particularly linear optical interferometers, as a type of quantum information processor. However in most of these early research works the conclusion was that a linear optical interferometer (alone) could not be used to make a universal quantum computer, regardless of the input states. For example in 1994, one year before Shor’s discovery of the now-famous quantum factoring algorithm, there appeared a paper by Černý that proposed to use a linear interferometer to solve NP-complete problems in polynomial time, but the scheme suffered from an exponential overhead in energy \cite{cerny}. Along the same lines, in 1996, Clauser and Dowling showed that a linear optical Talbot interferometer could be used to factor integers in polynomial time but with either an exponential blow up in energy or physical size \cite{clauser}. Then, also in 1996, Cerf, Adami, and Kwiat showed how to construct a programmable linear optical interferometer that could perform any universal logic gate with single photon inputs but this scheme too suffered an exponential overhead in spatial dimension. In 2002 Bartlett, et al., showed that even with quadratic nonlinearities any interferometer that processes only Gaussian state inputs can be efficiently simulated classically, a continuous variable analog of the Gottesman-Knill theorem for discrete variables in the ordinary circuit quantum computation model \cite{bart}. 
+
+	This litany of ``no-go'' theorems led to the wide spread belief that linear interferometry alone could not provide a path to universal quantum computation and that, as a corollary, all linear optical interferometers are efficiently simulateable on a classical computer. For completeness we will introduce the so-called linear optical quantum computing (LOQC) approach of Knill, LaFlamme, and Milburn (KLM) \cite{knill,kok} in the following section, but the remaining focus of this chapter is instead on boson sampling. That is because the KLM scheme set of universal gates requires intermediate measurements on ancilla photons with a feed forward mechanism that imparts a type of effective Kerr nonlinearity on the system \cite{lap}. 
+
+	Hence it came as a surprise to many of us in the quantum optics community when Aaronson and Arkhipov [AA] argued that, in general, the operation of a passive linear optical interferometer with Fock state inputs can very likely not be simulated by either a classical computer or even an ordinary universal quantum computer \cite{aar}. In particular if one considers a sampling of the outputs, utilizing photon number discriminating detectors, such a boson sampling cannot be predicted with a classical computer without an exponential overhead. This then is known in the quantum computer complexity community as the boson-sampling problem. 
+
+	The conclusion that computing the output of a linear optical interferometer with Fock state inputs was independently reached by Gard, et al., in the context of trying to compute the related problem of multiphoton coincidence counts in the output of a linear optical interferometer implementation of a quantum random walk with multi-photon walkers \cite{gard2}. In follow up papers, Gard, et al., as well as Motes, et al., argued from a physical (as opposed to quantum computer complexity) point of view that this inability to simulate such interferometers arose from two necessary requirements: 1. The photons ‘interact’ at the beam splitters via a Hong-Ou-Mandel effect that gives rise to an exponentially large Hilbert space in the number-path degrees of freedom that rules out a brute force simulation of the interferometer; and 2. That the simulation of the interferometer is also tied to the need to compute the permanent of a large matrix with complex entries that is a problem that is known to be in the complexity class \#P complete that is thought to be an intractable problem not only classically but even on a universal quantum computer \cite{gard, motes}. The reason for the second requirement is that, due to the Gottesman-Knill theorem, it is known that there are examples of quantum circuits with gates all in the Clifford algebra class that generate exponentially large amounts of qubit entanglement but are nevertheless and surprisingly classically simulateable. Sometimes there are shortcuts through the exponential Hilbert space and so by tying the simulation to the problem of the permanent solving we make is very unlikely that any such shortcuts exist. 
+
+	Since the first appearance of AA paper in 2010 there has been an explosion of research into the field of boson sampling. As we will discuss below there have been a number of experiments utilizing three-photons from spontaneous parametric down conversion (SPDC) sources (although these experiments are under debate as not all three photons were heralded single photons) \cite{ralph,broome,spring,anon,till,crespi} [http://quantumpundit.blogspot.com/2013/07/sampling-schmampling.html]. The experimental work has continued in parallel to a number of theoretical developments considering the effects of loss, noise, decoherence, non-Fock inputs, scalability of SPDC sources, ion-trap implementations, and so forth \cite{rohde1,rohde2,jiang,motes,shch}. We will discuss and summarize these results and more in the sections below. 
+
+	So then there come the questions — why is boson sampling getting so much attention and what is it good for? The answer to the first part is two fold. Firstly boson sampling is a new example of a computationally complex mathematical problem that cannot be simulated on a classical computer or likely even on a quantum computer. In that sense a boson-sampling device is more powerful than a universal quantum computer but likely only on this specific type of problem. A linear optical interferometer with Fock inputs is very likely not universal for quantum computing and hence it should be viewed as a special purpose quantum calculating machine for number sampling problems; at least for now. The appeal is that this is the first interesting example of a non-trivial quantum computing paradigm to come along in some while and the true scope and power of such machines is not fully yet worked out. 
+
+	Secondly there is an appeal that at least for small numbers of photons and small interferometer sizes the boson-sampling machine may be implemented in the lab without the overhead of quantum error correction and quantum memories and all the other elaborate features of ordinary circuit based universal quantum computation. 
+
+	Then the question arises; what is a boson-sampling machine good for other than boson sampling? The boson-sampling problem itself, other than being a computational curiosity, has no known practical applications or “killer apps” such as we find with the Shor factoring algorithm. But prior to 1994, when the Shor algorithm was invented, there the same question was asked; “What is a quantum computer good for.” Feynman’s work in the 1980s had hypothesized that an ordinary quantum computer could be used to carry out certain physics simulations without the exponential overhead required to do so on a classical computer but this hypothesis was not proved until Lloyd’s work of 1996 \cite{feyn,lloyd}. The first provably exponential speedup on a mathematical problem for an ordinary quantum computer was the Deutsch-Jozsa algorithm discovered in 1992, but this problem also had no practical applications \cite{deutsch}. So in many ways the boson-sampling quantum computer is like the ordinary circuit-based quantum computer pre-Shor. We have one example of an exponentially hard mathematical problem that the machine can solve but not one that is useful for anything. The lure is that perhaps the linear optical interferometers, now that this hidden computation power has been uncovered, are good for something else besides the boson-sampling problem. This potential is what has captured the imagination of researchers in the field. 
+
+	One final caveat; In almost all papers on the topic of boson sampling the interferometer is described as a linear device with non-interacting bosons — photons in this case. However the Hong-Ou-Mandel effect (followed by a projective measurement) imparts an effective nonlinearity and hence an effective interaction at each beam splitter. The presence or absence of a photon in one input mode radically changes the output state that a second photon in the other input mode will find itself in. This ‘interaction’ between indistinguishable particles, known as the exchange interaction, arises simply from the demand that the multiparticle wavefunction be properly symmetrized. While not a force in the usual sense it can give rise to quite noticeable effects. For example the bound state of the neutral hydrogen molecule, the most common molecule in our Universe, arises from just such an exchange interaction. It is therefore a misnomer to describe these interferometers as linear devices with non-interacting bosons. The exchange interaction is just a real as tagging on an additional term in a Hamiltonian and if one adds postselection in the number basis to the mix this imparts an effective Kerr-like nonlinearity between the bosons to boot.  
+
+\subsection{Intro to LOQC (Bryan)}
+ We begin by defining some terminology and notation. The smallest amount of data that we can deal with in quantum computing, analogous to the classical computing bit, is the quantum ``qubit''. A qubit is defined as 
+\begin{eqnarray}
+ \left[ \begin{array}{l}
+1 \\
+0 \\
+\end{array} \right] = \ket{0},
+\left[ \begin{array}{l}
+0 \\
+1 \\
+\end{array} \right] = \ket{1}
+\end{eqnarray}
+for a zero and one qubit, respectively. One of the advantages of quantum computing over classical computing is, of course, the ability to use quantum effects. One of these effects is the ability to have a qubit in a superposition of zero and one, that is, in general
+\begin{equation}
+\ket{\psi} = \cos{\frac{\theta}{2}} \ket{0} + e^{i \phi} \sin{\frac{\theta}{2}}\ket{1}
+\end{equation}
+ and with a specific choice for $\theta =\frac{\pi}{2}$ and $\phi =0$ we can simply this to
+\begin{equation}
+\ket{\psi}= \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1}
+\end{equation}
+This superposition represents that our state, once measured, has a 1/2 probability of being in state zero and a 1/2 probability of being in state one. These superpositions can also be depicted on the Bloch sphere as shown in Figure \ref{fig:Bloch}. One may initially want to view these superpositions as being in both states at once and while this idea is true, it is a bit misleading as once we measure this superposition state, it always takes either the value of zero or one. Before we measured the state however, we of course do not have any information about the state. It is the act of our measurement that forces the state to ``choose'' a zero or one. Thus there is a attribute of these superposition states to contain some ``hidden'' quantum information.
+\begin{figure}[bt]
+ \centering
+  \includegraphics[height=5.25cm]{Bloch.ps}
+  \caption{ Bloch sphere showing a way to visualize the rotations that the Pauli matrices apply to a state. Pure states lie on the sphere while mixed states are contained within the sphere.}
+  \label{fig:Bloch}
+\end{figure}
+
+ Also analogous to classical computing, we need a set of logic gates to perform operations on our quantum states \cite{nielsen}. These gates are defined as
+\begin{eqnarray}
+\textrm{Hadamard:} \;  \frac{1}{\sqrt{2}}\left[ 
+\begin{array}{cc}
+1&1 \\
+1&-1 \\
+\end{array} \right] \\
+\textrm{Pauli-X:}\; \left[
+\begin{array}{cc}
+0&1\\
+1&0\\
+\end{array} \right] \\
+\textrm{Pauli-Y:}\; \left[
+\begin{array}{cc}
+0&-i\\
+i&0\\
+\end{array} \right] \\
+\textrm{Pauli-Z:}\; \left[
+\begin{array}{cc}
+1&0\\
+0&-1\\
+\end{array} \right] \\
+\textrm{Phase:}\; \left[
+\begin{array}{cc}
+1&0\\
+0&i\\
+\end{array} \right] \\
+\frac{\pi}{8}:\; \left[
+\begin{array}{cc}
+1&0\\
+0&e^{i \pi/4}\\
+\end{array} \right] 
+\end{eqnarray}
+
+These gates form one choice of a universal gate set, the Clifford gate set. Any choice for a universal gate set can approximate any other gate set to arbitrary precision.
+In broad terms there are three classes of problems to which quantum computation outperforms classical computing. These classes include any algorithm that makes use of Fourier transforms such as Shor's algorithm for factoring and discrete logarithms.  For $ N= 2^n$ numbers, a classical fast Fourier transform would require $ N \log{N} \approx n2^n$ steps while a quantum computer could do this same transform in only $\log^2{N} \approx n^2$ steps.\cite{nielsen} 
+
+Another class is quantum search algorithms which make use of the superposition quality to, in effect, speed search times. Discovered by Grover, a search of space $N$, and no prior knowledge about the structure of the information in it, one wants to find an element of that search space satisfying a specific property. On a classical computer this search would take approximately $N$ operations, while a quantum search could accomplish this in $\sqrt{N}$ operations.
+
+The third type is simply quantum simulation, where one attempts to simulate a quantum system, thus requiring a quantum computer to simulate it efficiently. For a classical computer to simulate a quantum system with $n$ distinct components, it would require $c^n$ bits of memory, where $c$ is a constant depending on the choice of the system. A quantum computer would only require $kn$ bits of memory however, where $k$ is again a constant depending on the choice of the system. We thus take a exponential use of resources down to only a linear use of resources! Further discussion on quantum optics and quantum information processes see \cite{walls,aharonov,diVincenzo}.
+
+
+In computer terms, an operation can be done efficiently if the required resources are polynomial or lower. With only linear optical elements such as beam splitters, phase shifter, photo-detectors, and feed-back from photo-detector outputs, it can be shown that one can achieve this efficiency. This efficiency can be achieved by three requirements.
+\begin{enumerate}
+\item{Non-deterministic quantum computation.} 
+\item{Probability of success of quantum gates must approach unity.}
+\item{Ability to use quantum coding to accurately achieve encoded qubits.} 
+\end{enumerate}
+
+
+Discussion of linear optical quantum gate efficiency, such as beam splitters and the controlled phase gate are discussed in \cite{lemr} with the description of entanglement power and entanglement efficiency.
+\subsection{Linear Optics Quantum Computing}
+In general, to fully achieve a true quantum computer we require a way to generate a quantum state, perform gate operations on and measure this state.
+
+In order to generate a quantum state we use a single photon source which adds a photon to the vacuum state $\ket{0}$ and thus sets any vacuum mode to the $\ket{1}$ state. This process is non-deterministic but is sufficient for quantum computing.
+
+The simplest optical elements are phase shifters and beam splitters. This elements are used to act as gate operations on our prepared states. Since both of these transformations are unitary we can write each of these elements in terms of their unitary matrix. A phase shifters unitary matrix is simply $u(P_\theta)= e^{i \theta}$ while the unitary matrix for a beam splitter is given by
+\begin{eqnarray}
+u(B_{\theta,\phi})=
+\left(
+\begin{array}{cc}
+\cos{\theta}& -e^{i \phi} \sin{\theta} \\
+e^{-i \phi} \sin{\theta}& \cos{\theta} 
+\end{array}
+\right)
+\end{eqnarray}
+
+We can also represent both of these unitary matrices in terms of the familiar Pauli matrices, that is, a phase shifter implements $P_\theta = \exp{(-i \sigma_z \theta/2)}$ and a beam splitter implements $B_\theta = \exp{(-i \sigma_y \theta)}$, where we omit any global phase and set $\phi=0$. Since these Pauli matrices are simply rotations on the Bloch sphere, this shows that all one qubit rotations can be realized this way and thus can be implemented with linear optical elements.
+
+In order to measure the state, we use photo-detectors which destructively determine if a mode contains a photon or not. For states with more than one photon then, we need a photon counting detector, which can be implemented by using a series of beam splitters and photo-detectors. The beam splitters act so that the photons are spread evenly over N modes, with each mode containing a photo-detector. The probability of under counting given that the photon number is $k$ is at most $k(k-1)/(2N)$ but for our purposes $k \le 4 $ \cite{knill}. Another alternative is to use a photon number resolving detector.
+
+In addition to these single qubit rotations we also require a two qubit nondeterministic conditional sign flip gate. \cite{knill} This gate would perform $\alpha_0 \ket{0} + \alpha_1 \ket{1} +\alpha_2 \ket{2} \rightarrow \alpha_0 \ket{0} + \alpha_1 \ket{1} - \alpha_2 \ket{2}$. It is also important to note that this c-z with other linear optical gates is analogous to a c-not gate. This two qubit gate along with the previously discussed single qubit gates form the required logical gate basis to perform quantum computing. One only needs a set of one and two-qubit universal gates in order to construct general multi-qubit gates. Specifically we only require the Hadamard, phase, $\pi$/8 and CNOT gates. This idea is discussed in \cite{nielsen} p.188.
+
+Another useful tool in quantum computing is the use of quantum teleportation in order to increase the probability of success of coupling gates \cite{knill}. In order to teleport the state $\alpha_0 \ket{0} + \alpha_1 \ket{1}$ of mode 1 to mode 3, we first couple the entangled ancilla state $\ket{t_1}_{23} = \ket{01}_{23} + \ket{10}_{23}$. We then measure modes 1 and 2 in the Bell basis $\ket{01}_{12} \pm \ket{10}_{12}, \ket{00}_{12} \pm \ket{11}_{12}$. When measuring these modes, we first determine the parity of the number of photons present. We then determine the sign in the Bell basis ($\pm$). The following shows all combinations of these measurements:
+\begin{eqnarray}
+\textrm{If parity is odd} \left \{
+\begin{array}{c}
+\textrm{+ means mode 3 is  } \alpha_0 \ket{0}_3 + \alpha_1 \ket{1}_3  \\
+\textrm{ - means mode 3 is  } \alpha_0 \ket{0}_3 - \alpha_1 \ket{1}_3 \\
+\end{array} \right . \nonumber\\
+\textrm{If parity is even} \left \{
+\begin{array}{c}
+\textrm{ + means mode 3 is  } \alpha_1 \ket{0}_3 + \alpha_0 \ket{1}_3 \\
+\textrm{  - means mode 3 is  } \alpha_1 \ket{0}_3 - \alpha_0 \ket{1}_3 \\
+\end{array} \right . \nonumber
+\end{eqnarray}
+ It is clear that the first possible outcome is what is desired. The state in mode 1 is successfully teleported to mode 3 without actually interacting with mode 3. The second outcome in odd parity is a simple phase shift transformation  away from our desired outcome as well. The remaining two outcomes are not desirable and are not easily transformed into our desired state with linear optics. Thus we can see that if only using linear optics we can successfully implement this teleportation with a probability of 1/2. This idea can be extended to achieve higher probability of success \cite{knill}.
+
+\subsection{Why is LOQC hard? (Bryan)}
+All of this may lead one to ask, if this scheme, using only linear elements is so simple, whats the hold up in implementing this? To implement this scheme we require a myriad of technicalities. These include synchronization of pulses, mode matching, quickly controllable delay lines, tunable beam splitters and phase shifters, single photon sources, and accurate, fast, single photon detectors. Most of this list is not terribly impossible to adhere to but current efficiencies of photo detectors are not to the point of where they need to be to realistically implement the teleportation and the more complex gate operations mentioned in the previous section. The feedback control of these detectors must also be extremely fast in order to select proper state preparation before photon loss becomes an issue. Without accurate implementation of these protocols we likely lose our claim to universality, but we still retain our ability to investigate some interesting problems. This realm of LOQC with only passive elemenets and without fast feedback control or unrealistically accurate photo detectors lead us into Boson Sampling.
 
 \section{The boson-sampling formalism}
 
