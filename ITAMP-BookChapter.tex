@@ -303,7 +303,12 @@ This sampling problem was shown by AA to be a computationally hard problem. That
 \subsection{Why is boson-sampling so much easier than linear optics quantum computing? (Peter)}
 
 \subsection{Errors in boson-sampling (Johnny)}
-Discuss the 1/poly(n) bound
+
+There are a number of subtleties inherent in boson-sampling, often arising because one considers \textit{estimation} of a distribution.  In particular, we have shown that the amplitude of a given configuration of photons is tied to computing the permanent of a matrix.  While finding the exact permanent of a matrix with entries only coming from the set $\{0,1\}$ is known to be \textbf{\#P}-complete, one can efficiently \textit{estimate} the permanent of a matrix with real, non-negative entries \cite{bib:Valiant79,bib:Jerrum04}.  If efficient estimation were also possible for complex-valued unitaries, one could pass off the boson-sampling problem as simply a type of singularity -- a mathematical anomaly occuring only when one tries to know exact values.  Since implementing a physical system such as boson-sampling is bound to have some kind of error, one could not hope to experimentally achieve the "true" distribution anyway.
+
+In their paper, AA went to great lengths to prove the robustness of their result in the presence of error.  Thus, even attempting to estimate the output distribution of a boson-sampling machine is likely computationally hard.  (As one might expect, this correlates with the result that complex-valued matrix permanents cannot in general even be efficiently estimated unless exact permanents can as well \cite{bib:Jerrum04}.)  In a sampling regime, one cannot tolerate so much error without eventually deviating too far from the desired distribution or requiring so many samples as to make the algorithm inefficient.  For example, one could try postselecting to remove errant samples where photon-loss occurred.  However, if the probability  were to scale on the order of $O(c^{-n})$, we would lose any hope of scaling for large $n$.
+
+What then is an acceptable level of error?  Suppose we fix an error threshold $\epsilon$ (i.e. we set $\epsilon$ to be the maximum allowable variation distance from the "true" distribution).  Then so long as we have a success probably $P$ where $P>$ 1/poly($n$), we could correctly (within $\epsilon$) and efficiently sample a boson-sampling device with arbitrarily large values photon number.  More generally, if we wish also to scale $\epsilon$ smaller, $P>$ 1/poly($n,1/\epsilon$) \cite{aar}. As we discuss in the next section, however, we cannot experimentally determine whether this is achievable for asymptotic $n$.
 
 \section{Boson-sampling and the Extended Church-Turing thesis}
 
